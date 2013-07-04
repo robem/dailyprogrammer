@@ -1,12 +1,11 @@
 local FILE_NAME = 'dailyprogrammer.txt'
-local T_MODES = {"easy","intermediate","difficult","hard"}
+local T_MODES = {'easy','intermediate','difficult','hard'}
 local t_links = {}
 
 function download()
 	io.write('download ... ')
 	io.flush()
 	local http  = require('socket.http')
-	local ltn12 = require('ltn12')
 
 	local pat_entry = '<a class="title " href="([^"]+)"'
 	local pat_next = '<a href="([^"]+)"[^>]+>next'
@@ -17,10 +16,7 @@ function download()
 		assert(code==200)
 
 		for x in html:gmatch(pat_entry) do
-			--if x:match("_challenge_") then
 			table.insert(t_links, x)
-			--end
-			--print(x)
 		end
 
 		next_link = html:match(pat_next)
@@ -43,7 +39,6 @@ local update = (arg[1] == 'update')
 local file = io.open(FILE_NAME,'r')
 if not file or update then download() 
 else 
-	print('using local copy.')
 	for link in file:lines() do
 		table.insert(t_links, link)
 	end
@@ -52,7 +47,7 @@ end
 
 local t_mode = {}
 for _,x in pairs(t_links) do
-	local mode = x:match("(difficult)") or x:match("(intermediate)") or x:match("(easy)") or x:match("(hard)")
+	local mode = x:match('(difficult)') or x:match('(intermediate)') or x:match('(easy)') or x:match('(hard)')
 
 	if mode then
 		if not t_mode[mode] then t_mode[mode] = {} end
