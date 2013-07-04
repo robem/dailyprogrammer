@@ -2,7 +2,7 @@ local FILE_NAME = 'dailyprogrammer.txt'
 local T_MODES = {'easy','intermediate','difficult','hard'}
 local t_links = {}
 
-function download()
+local function download()
 	io.write('download ... ')
 	io.flush()
 	local http  = require('socket.http')
