@@ -1,4 +1,6 @@
-local FILE_NAME = 'dailyprogrammer.txt'
+#!/usr/bin/env lua
+
+local FILE_NAME = '.dailyprogrammer.txt'
 local T_MODES = {'easy','intermediate','difficult','hard'}
 local t_links = {}
 
@@ -57,7 +59,7 @@ end
 
 for _,mode in pairs(T_MODES) do
 	for _,link in pairs(t_mode[mode]) do
-		print(mode..string.rep(' ',12-#mode),link)
+		print(mode..string.rep(' ',12-#mode),'http://reddit.com'..link)
 	end
 end
 
